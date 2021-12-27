@@ -1,6 +1,8 @@
+import { useState, useEffect } from 'react';
 import { StyleSheet, Button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import MMKVStorage from "react-native-mmkv-storage";
 
 /* Screens */
 
@@ -10,6 +12,8 @@ import LoginScreen from '../screens/Login';
 /* Screens */
 
 const { Navigator, Screen } = createNativeStackNavigator();
+
+const MMKV = new MMKVStorage.Loader().initialize();
 
 export default function Routes()
 {
@@ -22,17 +26,7 @@ export default function Routes()
 			name: 'Login',
 			component: LoginScreen,
 			options: {
-				headerStyle: {
-					backgroundColor: 'red'
-				},
-				headerRight: () =>
-				(
-					<Button
-						onPress={ () => alert('Teste de alerta!') }
-						title="Teste"
-						color="#000"
-					/>
-				)
+				headerTitle: 'Entrar'
 			}
 		}
 	];
@@ -43,9 +37,7 @@ export default function Routes()
 
 			<Navigator initialRouteName="Login">
 
-				{
-					screens.map((screen, index) => <Screen key={ index } { ...screen } /> )
-				}
+				{ screens.map((screen, index) => <Screen key={ index } { ...screen } /> ) }
 
 			</Navigator>
 

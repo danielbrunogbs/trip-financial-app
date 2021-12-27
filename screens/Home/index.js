@@ -3,24 +3,20 @@ import { SwipeablePanel } from 'rn-swipeable-panel';
 import { useState } from 'react';
 import styles from './styles.js'
 
-export default function Home()
+export default function Home(props)
 {
 	const [visible, setVisible] = useState(false);
-
-	const [swipeProps, setSwipeProps] = useState({
-		fullWidth: true,
-		openLarge: true,
-		showCloseButton: true,
-		onClose: () => setVisible(false)
-	});
 
 	return (
 
 		<View style={ styles.container }>
 
 			<SwipeablePanel
-				{ ...swipeProps }
+				fullWidth="true"
+				openLarge="true"
+				showCloseButton="true"
 				isActive={ visible }
+				onClose={ () => setVisible(false) }
 			>
 
 			</SwipeablePanel>
